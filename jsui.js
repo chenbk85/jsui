@@ -189,8 +189,8 @@ function jform(cvs) {
             var bbox = result.canvas.getBoundingClientRect();
 
             return {
-                x: x - bbox.left * (result.canvas.width / bbox.width),
-                y: y - bbox.top * (result.canvas.height / bbox.height),
+                x: x - bbox.left,
+                y: y - bbox.top,
                 toString: function() { return this.x.toString() + ", " + this.y.toString(); }
             };
         },
@@ -234,7 +234,7 @@ function jform(cvs) {
         cvs.addEventListener(
             evt,
             function(e) {
-                var p = result.point(e.pageX, e.pageY);
+                var p = result.point(e.clientX, e.clientY);
 
                 var picked = result.root.pick(p.x, p.y);
                 if (picked != undefined && picked.obj != undefined && picked.obj[hdl] != undefined)
@@ -637,7 +637,7 @@ jsui.text = function(_name, _jform) {
         jthis.text = t;
 
         var s = jthis.measure();
-        jthis.setSize(s.width, jthis.fontSize);
+        jthis.setSize(s.width, -jthis.fontSize);
 
         return jthis;
     };
