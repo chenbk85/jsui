@@ -734,6 +734,8 @@ jsui.url = function(_name, _jform) {
 
     jthis.setUrl = function(u) {
         jthis.url = u;
+        if (jthis.url == undefined || jthis.url == "")
+            jthis.setColor("gray");
 
         return jthis;
     };
@@ -753,7 +755,8 @@ jsui.url = function(_name, _jform) {
     };
 
     jthis._touchDown = function(j, c, p) {
-        window.open(jthis.url);
+        if (jthis.url != undefined && jthis.url != "")
+            window.open(jthis.url);
     };
 
     return jthis;
