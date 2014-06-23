@@ -1,0 +1,39 @@
+<style media="screen" type="text/css">
+    canvas {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+</style>
+
+<html>
+    <head>
+        <title>hello</title>
+    </head>
+    <body>
+        <canvas id="doc_canvas" width="1000" height="600" style="border:1px solid #c3c3c3;"></canvas>
+        <script type="text/javascript" src="jsui.js"></script>
+        <script type="text/javascript" src="jitems.js"></script>
+        <script type="text/javascript">
+            var j = jform(document.getElementById("doc_canvas"));
+
+            var s = jvec2(610, 64);
+            j.root = jsui.list("list", j)
+                .setSize(s.x, s.y)
+                .addItem(jsui.resumeItem(undefined, j, "test.jpg", "hello world 1\nwrapped", "Go", "http://google.com"))
+                .addItem(jsui.resumeItem(undefined, j, "test.jpg", "hello world 2", "Go", "http://facebook.com"))
+                .addItem(jsui.resumeItem(undefined, j, "test.jpg", "hello world 3", "Go", "http://twitter.com"))
+                .layout()
+            ;
+
+            j.canvas.width = s.x;
+            j.canvas.height = s.y * j.root.items.length;
+
+            j.root.setSize(j.canvas.width, j.canvas.height);
+
+            j.run();
+        </script>
+    </body>
+</html>
