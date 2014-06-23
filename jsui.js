@@ -631,6 +631,8 @@ jsui.text = function(_name, _jform) {
     jthis.fontSize = 20;
     jthis.fontName = "Verdana";
 
+    jthis.wrapEnabled = true;
+
     jthis.setText = function(t) {
         jthis.text = t;
 
@@ -648,6 +650,12 @@ jsui.text = function(_name, _jform) {
 
     jthis.setFontName = function(n) {
         jthis.fontName = n;
+
+        return jthis;
+    };
+
+    jthis.setWrapEnabled = function(w) {
+        jthis.wrapEnabled = w;
 
         return jthis;
     };
@@ -701,9 +709,12 @@ jsui.text = function(_name, _jform) {
             if (jthis.preRender(__jform) == undefined)
                 return jthis;
 
-            //jthis.assignFont();
-            //__jform.context.fillText(jthis.text, jthis.derivedPosition.x, jthis.derivedPosition.y);
-            jthis.wrap(jthis.text, jthis.derivedPosition.x, jthis.derivedPosition.y, jthis.size.x, jthis.fontSize);
+            if (jthis.wrapEnabled) {
+                jthis.wrap(jthis.text, jthis.derivedPosition.x, jthis.derivedPosition.y, jthis.size.x, jthis.fontSize);
+            } else {
+                jthis.assignFont();
+                __jform.context.fillText(jthis.text, jthis.derivedPosition.x, jthis.derivedPosition.y);
+            }
 
             return jthis.baseObj.render(__jform);
         }
@@ -716,6 +727,8 @@ jsui.url = function(_name, _jform) {
     var jthis = jclass("url", "text", _name, _jform);
 
     jthis.url = "";
+
+    jthis.wrapEnabled = false;
 
     jthis.setColor("blue");
 

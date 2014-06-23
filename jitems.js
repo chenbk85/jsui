@@ -37,7 +37,7 @@ jsui.resumeItem = function(_name, _jform, _icon, _desc, _txt, _link) {
     jthis.override("setSize", function(w, h) {
             jthis.baseObj.setSize(w, h);
             jthis.panel.setSize(w, h);
-            jthis.link.setPosition(w - 40, 20);
+            jthis.link.setPosition(w - 40, 40);
             var s = jthis.link.measure();
             jthis.link.setSize(s.width, jthis.link.fontSize);
 
